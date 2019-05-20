@@ -14,7 +14,7 @@ script:
   - |
     docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/home/kernel/:rw,z" yshalsager/lineageos:14.1 bash << EOF
     cd /home/kernel/
-    export CROSS_COMPILE=/home/kernel/aarch64-linux-android-4.9/bin/aarch64-linux-android- && ARCH=arm64 && mkdir out && make O=out E300L_WW-perf_defconfig
+    export CROSS_COMPILE=/home/kernel/aarch64-linux-android-4.9/bin/aarch64-linux-android- && ARCH=arm64 && mkdir out && make O=out X00PD_defconfig
     make -j4 O=out && cp out/arch/arm64/boot/*Image* arch/arm64/boot/
     exit
     EOF
