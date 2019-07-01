@@ -1,0 +1,71 @@
+sudo: required
+
+services:
+
+  - docker
+
+before_install:
+
+  - docker pull yshalsager/lineageos:14.1
+
+before_script:
+
+  - cd $HOME && PATH=~/bin:$PATH
+
+  - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+
+  - chmod a+x ~/bin/repo
+
+  - git config --global color.ui false 
+
+script:
+
+  - git clone https://github.com/raza231198/kernel_staging -b stock-8.0 kernel
+
+  - cd kernel && git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 -b cm-14.0 aarch64-linux-android-4.9
+
+  - |
+
+    docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/home/kernel/:rw,z" yshalsager/lineageos:14.1 bash << EOF
+
+    cd /home/kernel/
+
+    export CROSS_COMPILE=/home/kernel/aarch64-linux-android-4.9/bin/aarch64-linux-android- && ARCH=arm64 && mkdir out && make O=out X00PD_defconfig
+
+    make -j4 O=out && cp out/arch/arm64/boot/*Image* arch/arm64/boot/
+
+    exit
+
+    EOF
+
+after_success:
+
+  - cp $HOME/kernel/out/arch/arm64/boot/Image.gz-dtb $HOME/kernel/zImage
+
+
+
+deploy:
+
+  skip_cleanup: true
+
+  provider: releases
+
+  api_key: "$GITHUB_TOKEN"
+
+  file_glob: true
+
+  file: $HOME/kernel/zImage
+
+  on:
+
+    tags: false
+
+    repo: iamsaalim/kernel_script
+
+    branch: master
+
+branches:
+
+  except:
+
+    - /^(?i:untagged)-.*$/
