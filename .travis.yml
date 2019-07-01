@@ -29,7 +29,7 @@ deploy:
   file: $HOME/kernel/zImage
   on:
     tags: false
-    repo: raza231198/kernel_travis
+    repo: iamsaalim/kernel_script
     branch: master
 branches:
   except:
