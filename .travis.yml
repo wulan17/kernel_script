@@ -1,32 +1,29 @@
+language: C
 sudo: required
-services:
-  - docker
 before_install:
-  - docker pull yshalsager/lineageos:14.1
+  - sudo apt-get update
+  - sudo apt-get install -y bc bison build-essential curl flex g++-multilib gcc-multilib gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc yasm zlib1g-dev
 before_script:
   - cd $HOME && PATH=~/bin:$PATH
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
   - chmod a+x ~/bin/repo
-  - git config --global color.ui false 
 script:
-  - git clone https://github.com/raza231198/rebase_kernel_asus_msm8937.git -b stock-8.0 kernel
-  - cd kernel && git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 -b cm-14.0 aarch64-linux-android-4.9
+  - cd $HOME && git clone -b stock-8.0  https://github.com/raza231198/rebase_kernel_asus_msm8937 kernel
+  - cd $HOME && git clone https://github.com/iamsaalim/kernel_script build_kernel
+  - cp $HOME/build_kernel/build.sh $HOME/kernel/build.sh
+  - cd $HOME/kernel && chmod +x build.sh
   - |
-    docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/home/kernel/:rw,z" yshalsager/lineageos:14.1 bash << EOF
-    cd /home/kernel/
-    export CROSS_COMPILE=/home/kernel/aarch64-linux-android-4.9/bin/aarch64-linux-android- && ARCH=arm64 && mkdir out && make O=out X00PD_defconfig
-    make -j4 O=out && cp out/arch/arm64/boot/*Image* arch/arm64/boot/
-    exit
-    EOF
-after_success:
-  - cp $HOME/kernel/out/arch/arm64/boot/Image.gz-dtb $HOME/kernel/zImage
-
+    cd $HOME/kernel
+    source build.sh
+    make -j4 O=out
+  - cp $HOME/build_kernel/strip.sh $HOME/kernel/strip.sh
+  - cd $HOME/kernel && chmod +x strip.sh && source strip.sh
 deploy:
   skip_cleanup: true
   provider: releases
   api_key: "$GITHUB_TOKEN"
   file_glob: true
-  file: $HOME/kernel/zImage
+  file: $HOME/kernel/AnyKernel3/*.zip
   on:
     tags: false
     repo: iamsaalim/kernel_script
