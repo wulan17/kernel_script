@@ -16,14 +16,14 @@ script:
     cd $HOME/kernel
     source build.sh
     make -j4 O=out
-  - cp $HOME/build_kernel/strip.sh $HOME/kernel/strip.sh
-  - cd $HOME/kernel && chmod +x strip.sh && source strip.sh
+after_success:
+  - cp $HOME/kernel/out/arch/arm64/boot/Image.gz-dtb $HOME/kernel/zImage
 deploy:
   skip_cleanup: true
   provider: releases
   api_key: "$GITHUB_TOKEN"
   file_glob: true
-  file: $HOME/kernel/AnyKernel3/*.zip
+  file: $HOME/kernel/zImage
   on:
     tags: false
     repo: iamsaalim/kernel_script
