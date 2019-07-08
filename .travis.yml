@@ -8,7 +8,7 @@ before_script:
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
   - chmod a+x ~/bin/repo
 script:
-  - cd $HOME && git clone -b stock-8.0  https://github.com/raza231198/rebase_kernel_asus_msm8937 kernel
+  - cd $HOME && git clone -b stock-8.0  https://github.com/iamsaalim/android_kernel_X00PD.git kernel
   - cd $HOME && git clone https://github.com/iamsaalim/kernel_script build_kernel
   - cp $HOME/build_kernel/build.sh $HOME/kernel/build.sh
   - cd $HOME/kernel && chmod +x build.sh
