@@ -39,7 +39,7 @@ STRIP="$PWD/aarch64-linux-android-4.9/bin/$(echo "$(find "$PWD/aarch64-linux-and
 
                 echo -e "\n(i) Cloning AnyKernel3 if folder not exist..."
 
-		git clone -b X00PD-zenui https://github.com/raza231198/AnyKernel3
+		git clone -b X00PD-zenui https://github.com/iamsaalim/AnyKernel3
 
 
 
