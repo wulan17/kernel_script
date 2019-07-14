@@ -2,7 +2,6 @@ KERNEL_DIR=$PWD
 KERN_IMG=$KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb
 ZIP_DIR=$KERNEL_DIR/AnyKernel3
 CONFIG_DIR=$KERNEL_DIR/arch/arm64/configs
-CONFIG=X00PD_defconfig
 CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
 CROSS_COMPILE+="ccache "
@@ -25,7 +24,7 @@ export ZIPNAME=kernel-$(date -d "+1 hour" +%d.%m.%Y-%H:%M:%S).zip"
 
 #Start the compilation
 
-make O=../out X00PD_defconfig
+make O=../out X00PD_defconfig 
 make -j$(nproc --all) O=../out
 
 #Create a flashable zip if the compilation succeded, abort if failed
