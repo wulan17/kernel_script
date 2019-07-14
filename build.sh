@@ -3,7 +3,7 @@ KERNEL_DIR=$PWD
 KERN_IMG=$KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb
 ZIP_DIR=$KERNEL_DIR/AnyKernel3
 CONFIG_DIR=$KERNEL_DIR/arch/arm64/configs
-CONFIG=X00P_defconfig
+CONFIG=X00PD_defconfig
 CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
 CROSS_COMPILE+="ccache "
@@ -15,6 +15,6 @@ export ARCH=arm64
 export SUBARCH=arm64
 export PATH=/usr/lib/ccache:$PATH
 export CROSS_COMPILE
-export KBUILD_BUILD_USER=kherio
-export KBUILD_BUILD_HOST=electro_beta
+export KBUILD_BUILD_USER=Kherio
+export KBUILD_BUILD_HOST=StormbrEakEr
 make  O=out $CONFIG $THREAD
