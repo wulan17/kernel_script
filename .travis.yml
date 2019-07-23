@@ -9,7 +9,7 @@ before_script:
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
   - chmod a+x ~/bin/repo
 script:
-  - cd $HOME && git clone -b oreo-caf https://github.com/iamsaalim/Stormbreaker_X00PD.git kernel
+  - cd $HOME && git clone -b pie-caf https://github.com/X00PD/android_kernel_asus_msm8937.git kernel
   - cd $HOME && git clone https://github.com/raza231198/build_kernel build_kernel
   - cp $HOME/build_kernel/build.sh $HOME/kernel/build.sh
   - cd $HOME/kernel && chmod +x build.sh
@@ -25,6 +25,7 @@ deploy:
   api_key: "$GITHUB_TOKEN"
   file_glob: true
   file: $HOME/kernel/AnyKernel3/*.zip
+  file: $HOME/kernel/out/arch/arm64/boot/zImage
   on:
     tags: false
     repo: iamsaalim/kernel_script
