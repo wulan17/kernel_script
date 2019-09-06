@@ -1,11 +1,14 @@
 language: C
 sudo: required
 
+before_deploy:
+  - git config --local user.name "wulan17"
+  - git config --local user.email "galihgustip@gmail.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')}
+  - git tag $TRAVIS_TAG
 before_install:
   - export TELEGRAM_TOKEN="$TELEGRAM_TOKEN"
   - export TELEGRAM_CHAT="$TELEGRAM_CHAT"
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')
-  - git tag $TRAVIS_TAG
   - sudo apt-get update
   - sudo apt-get install -y bc bison build-essential curl flex g++-multilib gcc-multilib gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc yasm zlib1g-dev 
 before_script:
@@ -33,7 +36,7 @@ script:
   - cd $HOME/kernel && chmod +x strip.sh && source strip.sh
   - BUILD_END=$(date +"%s")
   - BUILD_DIFF=$((BUILD_END - BUILD_START))
-  - $HOME/build_kernel/telegram -M "Build completed successfully in $((BUILD_DIFF / 60)) minute(s) and $((BUILD_DIFF % 60)) seconds"
+  - source rel.sh
 deploy:
   skip_cleanup: true
   provider: releases
