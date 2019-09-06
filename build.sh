@@ -7,10 +7,10 @@ CONFIG=cactus_defconfig
 CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
 CROSS_COMPILE+="ccache "
-CROSS_COMPILE+="$PWD/arm_arm-linux-androideabi-4.9/bin/arm_arm-linux-androideabi-"
+CROSS_COMPILE+="$PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-"
 
 echo -e "\n(i) Cloning toolcahins if folder not exist..."
-git clone https://github.com/wulan17/prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git arm_arm-linux-androideabi-4.9
+git clone https://github.com/wulan17/prebuilts_gcc_linux-x86_arm-linux-androideabi-4.9.git arm-linux-androideabi-4.9
 
 # Export
 export ARCH=arm
