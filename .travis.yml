@@ -37,4 +37,3 @@ script:
   - cd $HOME/kernel && chmod +x strip.sh && source strip.sh
   - BUILD_END=$(date +"%s")
   - BUILD_DIFF=$((BUILD_END - BUILD_START))
-  - source $HOME/build_kernel/rel.sh
