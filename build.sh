@@ -17,11 +17,17 @@ chmod a+x /home/travis/kernel/arm-linux-androideabi-4.9/libexec/gcc/arm-linux-an
 
 $HOME/build_kernel/telegram -M "Build Start
 Dev : wulan17
+
 Product : Kernel
+
 Device : #cactus
+
 Branch : Oreo
+
 Compiler : ""$(gcc --version)""
+
 Compiler : ""$(${CROSS_COMPILE}gcc --version | head -n 1)""
+
 Date : ""$(env TZ=Asia/Jakarta date)"""
 
 # Export
