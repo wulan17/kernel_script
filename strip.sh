@@ -8,5 +8,6 @@ CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
 CROSS_COMPILE+="ccache "
 CROSS_COMPILE+="$PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-"
+export zip_name="kernel-cactus-"$(env TZ='Asia/Jakarta' date +%Y%m%d)""
 cp $KERN_IMG $ZIP_DIR
-zip -r $filename.zip ./*
+zip -r $zip_name.zip ./*

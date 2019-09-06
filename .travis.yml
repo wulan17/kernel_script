@@ -22,7 +22,7 @@ script:
   - SYNC_DIFF=$((SYNC_END - SYNC_START))
   - $HOME/build_kernel/telegram -M "Sync completed successfully in $((SYNC_DIFF / 60)) minute(s) and $((SYNC_DIFF % 60)) seconds"
   - BUILD_START=$(date +"%s")
-  - curl https://api.telegram.org/bot"$TELEGRAM_TOKEN"/sendMessage?chat_id="$TELEGRAM_CHAT"&text=Build%20Start%0D%0ADev%20:%20wulan17%0D%0AProduct%20:%20Kernel%0D%0ADevice%20:%20cactus%0D%0ABranch%20:%20Oreo%0D%0ACompiler%20:%20"$(gcc --version)"%0D%0ACompiler%20:%20"$($PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-gcc --version | head -n 1)"%0D%0ADate%20:%20"$(env TZ=Asia/Jakarta date)"
+  - curl https://api.telegram.org/bot$TELEGRAM_TOKEN/sendMessage?chat_id=$TELEGRAM_CHAT&text=Build%20Start%0D%0ADev%20:%20wulan17%0D%0AProduct%20:%20Kernel%0D%0ADevice%20:%20cactus%0D%0ABranch%20:%20Oreo%0D%0ACompiler%20:%20"$(gcc --version)"%0D%0ACompiler%20:%20"$($PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-gcc --version | head -n 1)"%0D%0ADate%20:%20"$(env TZ=Asia/Jakarta date)"
   - |
     cd $HOME/kernel
     source build.sh

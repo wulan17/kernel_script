@@ -11,9 +11,11 @@ CROSS_COMPILE+="$PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-"
 
 echo -e "\n(i) Cloning toolcahins if folder not exist..."
 git clone https://github.com/wulan17/prebuilts_gcc_linux-x86_arm-linux-androideabi-4.9.git arm-linux-androideabi-4.9
+chmod a+x /home/travis/kernel/arm-linux-androideabi-4.9/bin/*
+chmod a+x /home/travis/kernel/arm-linux-androideabi-4.9/libexec/gcc/arm-linux-androideabi/4.9.x/*
+chmod a+x /home/travis/kernel/arm-linux-androideabi-4.9/libexec/gcc/arm-linux-androideabi/4.9.x/plugin/*
 
 # Export
-export filename="kernel-cactus-"$(env TZ='Asia/Jakarta' date +%Y%m%d)""
 export ARCH=arm
 export SUBARCH=arm
 export PATH=/usr/lib/ccache:$PATH
