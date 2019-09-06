@@ -4,6 +4,8 @@ sudo: required
 before_install:
   - export TELEGRAM_TOKEN="$TELEGRAM_TOKEN"
   - export TELEGRAM_CHAT="$TELEGRAM_CHAT"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')
+  - git tag $TRAVIS_TAG
   - sudo apt-get update
   - sudo apt-get install -y bc bison build-essential curl flex g++-multilib gcc-multilib gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc yasm zlib1g-dev 
 before_script:
@@ -39,9 +41,6 @@ deploy:
   file_glob: true
   file: $HOME/kernel/AnyKernel/*.zip
   on:
-    tags: false
+    tags: true
     repo: wulan17/kernel_script
     branch: master
-branches:
-  except:
-    - /^(?i:untagged)-.*$/
