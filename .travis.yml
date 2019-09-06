@@ -9,8 +9,8 @@ before_script:
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
   - chmod a+x ~/bin/repo
 script:
-  - cd $HOME && git clone -b kernel.lnx.3.18.r34-rel  https://github.com/android-linux-stable/msm-3.18.git kernel
-  - cd $HOME && git clone -b master https://github.com/iamsaalim/kernel_script.git build_kernel
+  - cd $HOME && git clone https://github.com/wulan17/lol.git kernel
+  - cd $HOME && git clone https://github.com/wulan17/kernel_script.git build_kernel
   - cp $HOME/build_kernel/build.sh $HOME/kernel/build.sh
   - cd $HOME/kernel && chmod +x build.sh
   - |
@@ -25,10 +25,10 @@ deploy:
   api_key: "$GITHUB_TOKEN"
   file_glob: true
   file: $HOME/kernel/AnyKernel3/*.zip
-  file: $HOME/kernel/out/arch/arm64/boot/zImage
+  file: $HOME/kernel/out/arch/arm/boot/zImage-dtb
   on:
     tags: false
-    repo: iamsaalim/kernel_script
+    repo: wulan17/kernel_script
     branch: master
 branches:
   except:
