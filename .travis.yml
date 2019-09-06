@@ -2,6 +2,8 @@ language: C
 sudo: required
 
 before_install:
+  - export TELEGRAM_TOKEN="$TELEGRAM_TOKEN"
+  - export TELEGRAM_CHAT="$TELEGRAM_CHAT"
   - sudo apt-get update
   - sudo apt-get install -y bc bison build-essential curl flex g++-multilib gcc-multilib gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc yasm zlib1g-dev
 before_script:
@@ -9,16 +11,34 @@ before_script:
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
   - chmod a+x ~/bin/repo
 script:
-  - cd $HOME && git clone https://github.com/wulan17/lol.git kernel
   - cd $HOME && git clone https://github.com/wulan17/kernel_script.git build_kernel
+  - chmod a+x $HOME/build_kernel/telegram
+  - SYNC_START=$(date +"%s")
+  - $HOME/build_kernel/telegram -M "Sync Started"
+  - cd $HOME && git clone https://github.com/wulan17/lol.git kernel
   - cp $HOME/build_kernel/build.sh $HOME/kernel/build.sh
   - cd $HOME/kernel && chmod +x build.sh
+  - SYNC_END=$(date +"%s")
+  - SYNC_DIFF=$((SYNC_END - SYNC_START))
+  - $HOME/build_kernel/telegram -M "Sync completed successfully in $((SYNC_DIFF / 60)) minute(s) and $((SYNC_DIFF % 60)) seconds"
+  - BUILD_START=$(date +"%s")
+  - $HOME/build_kernel/telegram -M "Build Start
+    Dev : wulan17
+    Product : Kernel
+    Device : #cactus
+    Branch : Oreo
+    Compiler : ""$(gcc --version)""
+    Compiler : ""$($PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-gcc --version | head -n 1)""
+    Date : "$(env TZ="$timezone" date)""
   - |
     cd $HOME/kernel
     source build.sh
     make -j4 O=out
   - cp $HOME/build_kernel/strip.sh $HOME/kernel/strip.sh
   - cd $HOME/kernel && chmod +x strip.sh && source strip.sh
+  - BUILD_END=$(date +"%s")
+  - BUILD_DIFF=$((BUILD_END - BUILD_START))
+  - $HOME/build_kernel/telegram -M "Build completed successfully in $((BUILD_DIFF / 60)) minute(s) and $((BUILD_DIFF % 60)) seconds"
 deploy:
   skip_cleanup: true
   provider: releases

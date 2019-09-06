@@ -7,6 +7,6 @@ CONFIG=cactus_defconfig
 CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
 CROSS_COMPILE+="ccache "
-CROSS_COMPILE+="$PWD/arm_arm-linux-androideabi-4.9/bin/arm_arm-linux-androideabi-"
+CROSS_COMPILE+="$PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-"
 
 
