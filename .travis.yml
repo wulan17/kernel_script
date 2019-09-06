@@ -5,7 +5,7 @@ before_install:
   - export TELEGRAM_TOKEN="$TELEGRAM_TOKEN"
   - export TELEGRAM_CHAT="$TELEGRAM_CHAT"
   - sudo apt-get update
-  - sudo apt-get install -y bc bison build-essential curl flex g++-multilib gcc-multilib gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc yasm zlib1g-dev
+  - sudo apt-get install -y bc bison build-essential curl flex g++-multilib gcc-multilib gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc yasm zlib1g-dev 
 before_script:
   - cd $HOME && PATH=~/bin:$PATH
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
@@ -22,7 +22,7 @@ script:
   - SYNC_DIFF=$((SYNC_END - SYNC_START))
   - $HOME/build_kernel/telegram -M "Sync completed successfully in $((SYNC_DIFF / 60)) minute(s) and $((SYNC_DIFF % 60)) seconds"
   - BUILD_START=$(date +"%s")
-  - curl https://api.telegram.org/bot$TELEGRAM_TOKEN/sendMessage?chat_id=$TELEGRAM_CHAT&text=Build%20Start%0D%0ADev%20:%20wulan17%0D%0AProduct%20:%20Kernel%0D%0ADevice%20:%20cactus%0D%0ABranch%20:%20Oreo%0D%0ACompiler%20:%20"$(gcc --version)"%0D%0ACompiler%20:%20"$($PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-gcc --version | head -n 1)"%0D%0ADate%20:%20"$(env TZ=Asia/Jakarta date)"
+  - source $HOME/build_kernel/start.sh
   - |
     cd $HOME/kernel
     source build.sh
