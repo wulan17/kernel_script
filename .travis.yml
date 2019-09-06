@@ -23,13 +23,13 @@ script:
   - $HOME/build_kernel/telegram -M "Sync completed successfully in $((SYNC_DIFF / 60)) minute(s) and $((SYNC_DIFF % 60)) seconds"
   - BUILD_START=$(date +"%s")
   - $HOME/build_kernel/telegram -M "Build Start
-    Dev : wulan17
-    Product : Kernel
-    Device : #cactus
-    Branch : Oreo
-    Compiler : ""$(gcc --version)""
-    Compiler : ""$($PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-gcc --version | head -n 1)""
-    Date : "$(env TZ="$timezone" date)""
+    Dev = wulan17
+    Product = Kernel
+    Device = #cactus
+    Branch = Oreo
+    Compiler = ""$(gcc --version)""
+    Compiler = ""$($PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-gcc --version | head -n 1)""
+    Date = "$(env TZ="$timezone" date)""
   - |
     cd $HOME/kernel
     source build.sh
