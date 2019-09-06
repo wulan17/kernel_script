@@ -4,8 +4,6 @@ sudo: required
 before_deploy:
   - git config --local user.name "wulan17"
   - git config --local user.email "galihgustip@gmail.com"
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')}
-  - git tag $TRAVIS_TAG
 before_install:
   - export TELEGRAM_TOKEN="$TELEGRAM_TOKEN"
   - export TELEGRAM_CHAT="$TELEGRAM_CHAT"
@@ -40,13 +38,3 @@ script:
   - BUILD_END=$(date +"%s")
   - BUILD_DIFF=$((BUILD_END - BUILD_START))
   - source $HOME/build_kernel/rel.sh
-deploy:
-  skip_cleanup: true
-  provider: releases
-  api_key: "$GITHUB_TOKEN"
-  file_glob: true
-  file: $HOME/kernel/AnyKernel/*.zip
-  on:
-    tags: true
-    repo: wulan17/kernel_script
-    branch: master
