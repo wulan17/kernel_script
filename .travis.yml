@@ -11,7 +11,7 @@ before_script:
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
   - chmod a+x ~/bin/repo
 script:
-  - cd $HOME && git clone https://github.com/wulan17/kernel_script.git build_kernel
+  - cd $HOME && git clone -b oreo https://github.com/wulan17/kernel_script.git build_kernel
   - chmod a+x $HOME/build_kernel/telegram
   - SYNC_START=$(date +"%s")
   - $HOME/build_kernel/telegram -M "Sync Started"
