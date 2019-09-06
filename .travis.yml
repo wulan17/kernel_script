@@ -44,8 +44,7 @@ deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
   file_glob: true
-  file: $HOME/kernel/AnyKernel3/*.zip
-  file: $HOME/kernel/out/arch/arm/boot/zImage-dtb
+  file: $HOME/kernel/AnyKernel/*.zip
   on:
     tags: false
     repo: wulan17/kernel_script
