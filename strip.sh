@@ -11,6 +11,9 @@ CROSS_COMPILE+="$PWD/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-"
 export zip_name="kernel-cactus-"$(env TZ='Asia/Jakarta' date +%Y%m%d)""
 cp $KERN_IMG $ZIP_DIR
 cd $ZIP_DIR
+mv zImage-dtb zImage
+BUILD_END=$(date +"%s")
+BUILD_DIFF=$((BUILD_END - BUILD_START))
 export tag=$(date +'%Y%m%d%H%M%S')
 zip -r $zip_name.zip ./*
 $HOME/build_kernel/github-release "$release_repo" "$tag" "oreo" "Kernel for cactus
