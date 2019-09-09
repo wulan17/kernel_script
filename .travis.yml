@@ -31,4 +31,4 @@ script:
     source build.sh
     make -j4 O=out
   - cp $HOME/build_kernel/strip.sh $HOME/kernel/strip.sh
-  - cd $HOME/kernel && chmod +x strip.sh && source strip.sh
+  - cd $HOME/kernel && chmod +x strip.sh && source strip.sh; export COMPILE_RESULT=$?
