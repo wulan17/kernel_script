@@ -25,7 +25,6 @@ script:
   - SYNC_DIFF=$((SYNC_END - SYNC_START))
   - $HOME/build_kernel/telegram -M "Sync completed successfully in $((SYNC_DIFF / 60)) minute(s) and $((SYNC_DIFF % 60)) seconds"
   - BUILD_START=$(date +"%s")
-  - source $HOME/build_kernel/start.sh
   - |
     cd $HOME/kernel
     source build.sh
