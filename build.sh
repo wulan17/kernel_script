@@ -22,7 +22,7 @@ Product : Kernel
 
 Device : #cactus
 
-Branch : Oreo
+Branch : Pie
 
 Compiler : ""$(gcc --version)""
 
