@@ -25,10 +25,9 @@ script:
   - SYNC_DIFF=$((SYNC_END - SYNC_START))
   - $HOME/build_kernel/telegram -M "Sync completed successfully in $((SYNC_DIFF / 60)) minute(s) and $((SYNC_DIFF % 60)) seconds"
   - BUILD_START=$(date +"%s")
-  - |
-    cd $HOME/kernel
-    source build.sh
-    make -j4 O=out
+  - cd $HOME/kernel
+  - source build.sh
+  - make -j4 O=out
 before_deploy:
   # Set up git user name and tag this commit
   - git config --local user.name "wulan17"
