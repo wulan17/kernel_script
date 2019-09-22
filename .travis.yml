@@ -31,6 +31,7 @@ script:
   - source build.sh
   - make -j4 O=out
   - cp $HOME/build_kernel/strip.sh $HOME/kernel/strip.sh
+  - cp $HOME/build_kernel/c.sh $HOME/kernel/c.sh
 before_deploy:
   # Set up git user name and tag this commit
   - git config --local user.name "wulan17"
@@ -38,7 +39,7 @@ before_deploy:
   - git tag $TRAVIS_TAG
   - export zip_name="kernel-cactus-"$(env TZ='Asia/Jakarta' date +%Y%m%d)""
   - cd $HOME/kernel && chmod +x strip.sh && source strip.sh
-  - source c.sh
+  - chmod +x c.sh && source c.sh
 deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
