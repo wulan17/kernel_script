@@ -47,4 +47,4 @@ deploy:
   on:
     tags: true
     repo: wulan17/kernel_script
-    branch: oreo
+    branch: master
