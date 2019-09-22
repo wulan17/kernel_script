@@ -39,7 +39,7 @@ before_deploy:
   - git tag $TRAVIS_TAG
   - export zip_name="kernel-cactus-"$(env TZ='Asia/Jakarta' date +%Y%m%d)""
   - cd $HOME/kernel && chmod +x strip.sh && source strip.sh
-  - chmod +x c.sh && source c.sh
+  - cd $HOME/kernel && chmod +x c.sh && source c.sh
 deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
