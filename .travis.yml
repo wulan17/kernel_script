@@ -43,7 +43,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
-  file: $HOME/kernel/AnyKernel/$zip_name.zip
+  file: $HOME/build_kernel/AnyKernel/$zip_name.zip
   skip_cleanup: true
   on:
     tags: true
