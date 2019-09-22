@@ -43,7 +43,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
-  file: $HOME/kernel/AnyKernel/*.zip
+  file: $HOME/kernel/AnyKernel/$TRAVIS_TAG.zip
   skip_cleanup: true
   on:
     tags: true
