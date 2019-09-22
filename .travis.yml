@@ -5,7 +5,7 @@ before_install:
   - export TELEGRAM_TOKEN="$TELEGRAM_TOKEN"
   - export TELEGRAM_CHAT="$TELEGRAM_CHAT"
   - export GITHUB_TOKEN="$GITHUB_TOKEN"
-  - export release_repo="wulan17/android_kernel_xiaomi_mt6765-common"
+  - export release_repo="wulan17/kernel_script"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')}
   - export zip_name="kernel-cactus-"$(env TZ='Asia/Jakarta' date +%Y%m%d)""
   - sudo apt-get update
@@ -47,5 +47,5 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    repo: wulan17/android_kernel_xiaomi_mt6765-common
-    branch: android-9.0
+    repo: wulan17/kernel_script
+    branch: master
