@@ -30,13 +30,13 @@ script:
   - make -j4 O=out
   - cp $HOME/build_kernel/strip.sh $HOME/kernel/strip.sh
   - cp $HOME/build_kernel/c.sh $HOME/kernel/c.sh
-before_deploy:
-  # Set up git user name and tag this commit
   - git config --local user.name "wulan17"
   - git config --local user.email "galihgustip@gmail.com"
   - git tag $TRAVIS_TAG
   - cd $HOME/kernel && chmod +x strip.sh && source strip.sh
   - cd $HOME/kernel && chmod +x c.sh && source c.sh
+before_deploy:
+  # Set up git user name and tag this commit
 deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
