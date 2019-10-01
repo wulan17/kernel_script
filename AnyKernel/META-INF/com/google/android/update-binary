@@ -27,7 +27,7 @@ mkdir -p /tmp/anykernel;
 cd /tmp/anykernel;
 unzip -o "$ZIP";
 ui_print "**********************";
-ui_print " Lord extended v3.0 cactus By @iamlordutkarsh";
+ui_print " wulan17 Kernel Test Build";
 ui_print "**********************";
 /sbin/busybox mount /system;
 ui_print "**********************";
