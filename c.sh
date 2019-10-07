@@ -6,7 +6,7 @@ Dev : wulan17
 
 Product : Kernel
 
-Device : #cactus
+Device : #cereus
 
 Branch : Pie
 
