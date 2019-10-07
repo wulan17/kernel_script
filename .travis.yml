@@ -18,7 +18,7 @@ script:
   - chmod a+x $HOME/build_kernel/telegram
   - SYNC_START=$(date +"%s")
   - $HOME/build_kernel/telegram -M "Sync Started"
-  - cd $HOME && git clone -b android-9.0 https://github.com/wulan17/android_kernel_xiaomi_cactus.git --depth 1 kernel
+  - cd $HOME && git clone -b pie https://github.com/wulan17/android_kernel_xiaomi_cactus.git --depth 1 kernel
   - cp $HOME/build_kernel/build.sh $HOME/kernel/build.sh
   - cd $HOME/kernel && chmod +x build.sh
   - SYNC_END=$(date +"%s")
